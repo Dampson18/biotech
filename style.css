@@ -1145,7 +1145,7 @@ footer .footer-content {
     .services-list .service-category-grid,
     .team-grid,
     .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax for better fit */
     }
 
     .call-to-action h2 {
@@ -1270,20 +1270,9 @@ footer .footer-content {
     .contact-form button[type="submit"] {
         width: 100%;
     }
-
-    /* Refined grid column definition for smaller screens */
-    .services-preview .service-grid,
-    .about-section .principles-grid,
-    .about-section .choose-us-grid,
-    .services-list .service-category-grid,
-    .team-grid,
-    .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow items to go down to 200px wide */
-        gap: 20px; /* Slightly reduced gap */
-    }
 }
 
-/* Even smaller breakpoint for very narrow screens like iPhone SE in portrait */
+/* Even smaller breakpoint for very narrow screens like iPhone SE in portrait, or iPhone 12 Pro Max (effective 428px) */
 @media (max-width: 420px) {
     .container {
         width: 98%; /* Maximize space for content */
@@ -1297,6 +1286,11 @@ footer .footer-content {
     .logo img {
         height: 30px; /* Slightly smaller logo image */
         margin-right: 5px;
+    }
+
+    /* Adjust header container to ensure spacing */
+    header .container {
+        padding: 10px 5px; /* Even less horizontal padding for extremely narrow screens */
     }
 
     .hero-title, .page-hero .hero-title {
@@ -1324,6 +1318,7 @@ footer .footer-content {
         font-size: 1.1rem;
     }
 
+    /* Force single column layout for all relevant grids on smallest screens */
     .services-preview .service-grid,
     .about-section .principles-grid,
     .about-section .choose-us-grid,
@@ -1332,6 +1327,13 @@ footer .footer-content {
     .contact-grid {
         grid-template-columns: 1fr; /* Force single column layout for smallest screens */
         gap: 15px;
+    }
+
+    /* Image specific adjustments for very small screens */
+    .about-us-preview .about-img,
+    .services-intro .intro-image,
+    .about-section .profile-img {
+        max-width: 90%; /* Allow image to take more width, still centered */
     }
 
     .team-member-card img {
@@ -1373,5 +1375,12 @@ footer .footer-content {
 
     #location-map iframe {
         height: 300px; /* Slightly reduced map height */
+    }
+
+    /* Adjust footer social links alignment if needed, though they should center with flex */
+    .footer-section .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Add a small gap between social icons */
     }
 }
