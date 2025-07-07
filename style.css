@@ -93,15 +93,18 @@ img {
 
 .btn:hover {
     background: var(--dark-color);
+    color: white;
     transform: translateY(-2px);
 }
 
 .btn-secondary {
     background: var(--secondary-color);
+    color: white;
 }
 
 .btn-secondary:hover {
     background: var(--dark-color);
+    color: white;
 }
 
 .text-center {
@@ -327,8 +330,7 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto; /* Ensure image scales */
-    object-fit: cover; /* Important for preventing distortion */
-    object-position: center; /* Important for centralizing focus */
+    /* REMOVED: object-fit: cover; object-position: center; */
 }
 
 .about-us-preview .about-content > div {
@@ -467,8 +469,7 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto;
-    object-fit: cover; /* Important for preventing distortion */
-    object-position: center; /* Important for centralizing focus */
+    /* REMOVED: object-fit: cover; object-position: center; */
 }
 
 .about-section .story-content > div {
@@ -599,8 +600,7 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto;
-    object-fit: cover; /* Important for preventing distortion */
-    object-position: center; /* Important for centralizing focus */
+    /* REMOVED: object-fit: cover; object-position: center; */
 }
 
 .services-intro .intro-content > div {
