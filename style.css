@@ -132,6 +132,8 @@ header .container {
 .logo {
     display: flex;
     align-items: center;
+    flex-shrink: 1; /* Allows the logo container to reduce its size if space is limited */
+    min-width: 0;   /* Prevents the logo content (like the H1 text) from setting an inflexible minimum width */
 }
 
 .logo img {
@@ -143,7 +145,7 @@ header .container {
     font-size: 1.8rem;
     margin: 0;
     color: var(--primary-color);
-    white-space: nowrap; /* Prevent wrapping on smaller screens */
+    white-space: nowrap; /* Keep this for larger screens; it will be overridden for smaller ones */
 }
 
 .main-nav ul {
@@ -1080,6 +1082,7 @@ footer .footer-content {
 
     .menu-toggle {
         display: block; /* Show mobile menu icon */
+        flex-shrink: 0; 
     }
 
     .hero-title, .page-hero .hero-title {
@@ -1158,67 +1161,102 @@ footer .footer-content {
 }
 
 @media (max-width: 576px) {
+    /* Main logo heading adjustments for very small screens */
     .logo h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Slightly smaller font size for tight spaces */
+        white-space: normal; /* IMPORTANT: Allows the text to wrap onto multiple lines */
+        line-height: 1.2;    /* Ensures good line spacing if text wraps */
     }
 
+    /* Optional: Shrink logo image slightly for very small screens */
+    .logo img {
+        height: 35px;
+        margin-right: 8px;
+    }
+
+    /* Adjust header container padding for maximum horizontal space */
+    header .container {
+        padding: 15px 10px; /* Reduced horizontal padding to give content more room */
+    }
+
+    /* General container padding adjustment for all sections on very small screens */
+    .container {
+        width: 95%; /* Use more of the available screen width */
+        padding: 15px 10px; /* Add explicit horizontal padding */
+    }
+
+    /* Hero section font sizes */
     .hero-title, .page-hero .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem; /* Adjusted for very small screens */
     }
 
     .hero-subtitle, .page-hero .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Adjusted for very small screens */
     }
 
+    /* Button adjustments for hero section */
     .hero .btn {
         display: block;
-        width: 80%;
-        margin: 10px auto;
+        width: 90%; /* Buttons take up more width, stack vertically */
+        margin: 8px auto;
     }
 
+    /* Section padding adjustments */
     section {
-        padding: 50px 0;
+        padding: 40px 0; /* Reduced vertical padding for compact layout */
     }
 
+    /* Heading sizes within sections */
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
+    /* Padding for various content cards/items */
     .services-preview .service-item,
     .about-section .principle-item,
     .about-section .choose-us-item,
     .team-member-card,
     .contact-item {
-        padding: 20px;
+        padding: 15px; /* Reduced internal padding for smaller footprint */
     }
 
+    /* Core values list items */
     .about-section .core-values-detailed li {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 20px;
     }
 
-    .about-section .core-values-detailed li .icon-small {
-        margin-bottom: 10px;
-        padding-top: 0;
-    }
-
+    /* Call to action section */
     .call-to-action h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .call-to-action p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
+    /* Form container and button */
     .form-container {
-        padding: 25px;
+        padding: 20px;
     }
 
     .contact-form button[type="submit"] {
         width: 100%;
+    }
+
+    /* Refined grid column definition for smaller screens */
+    .services-preview .service-grid,
+    .about-section .principles-grid,
+    .about-section .choose-us-grid,
+    .services-list .service-category-grid,
+    .team-grid,
+    .contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow items to go down to 200px wide */
+        gap: 20px; /* Slightly reduced gap */
     }
 }
