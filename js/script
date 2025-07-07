@@ -1,0 +1,120 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation links (handles internal hash links)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Only prevent default if it's an internal hash link on the *current* page
+            // This allows links to other pages (e.g., about.html) to function normally
+            if (this.pathname === window.location.pathname) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1); // Remove the '#'
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Close sidebar if a link inside it is clicked
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    });
+
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
+
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', () => {
+            if (sidebar) {
+                sidebar.classList.add('active');
+            }
+        });
+    }
+
+    if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', () => {
+            if (sidebar) {
+                sidebar.classList.remove('active');
+            }
+        });
+    }
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+        const isClickInsideSidebar = sidebar && sidebar.contains(event.target);
+        const isClickOnMobileMenu = mobileMenu && mobileMenu.contains(event.target);
+
+        if (sidebar && sidebar.classList.contains('active') && !isClickInsideSidebar && !isClickOnMobileMenu) {
+            sidebar.classList.remove('active');
+        }
+    });
+
+    // Set active class for current page in navigation
+    // Get the base filename (e.g., 'index.html', 'about.html')
+    const currentPath = window.location.pathname.split('/').pop();
+    const mainNavLinks = document.querySelectorAll('.main-nav ul li a');
+    const sidebarLinks = document.querySelectorAll('.sidebar nav ul li a');
+
+    [...mainNavLinks, ...sidebarLinks].forEach(link => {
+        const linkHref = link.getAttribute('href');
+        // Handle empty string for index.html if accessed directly from domain root
+        if ((linkHref === currentPath) || (currentPath === '' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // Optional: Close sidebar on swipe (for touch devices)
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    if (sidebar) { // Ensure sidebar exists before adding listeners
+        sidebar.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        sidebar.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            if (touchendX < touchstartX && (touchstartX - touchendX > 50)) { // Swiped left
+                sidebar.classList.remove('active');
+            }
+        });
+    }
+
+    // Back to Top Button Logic
+    const backToTopButton = document.getElementById('back-to-top');
+
+    if (backToTopButton) { // Ensure the button exists
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                backToTopButton.style.display = 'flex'; // Use flex to center icon
+                // Use a small delay to trigger CSS transition after display:block
+                setTimeout(() => {
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                backToTopButton.style.opacity = '0';
+                backToTopButton.style.transform = 'translateY(10px)';
+                // Hide completely after transition finishes
+                setTimeout(() => {
+                    backToTopButton.style.display = 'none';
+                }, 300); // Match this to your CSS transition duration
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
