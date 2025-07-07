@@ -31,6 +31,7 @@ body {
     color: var(--text-color);
     background-color: var(--light-color);
     overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+    -webkit-text-size-adjust: 100%; /* Ensure text doesn't auto-resize on iOS Safari */
 }
 
 .container {
@@ -66,6 +67,13 @@ a:hover {
 
 ul {
     list-style: none;
+}
+
+/* Global Image Responsiveness */
+img {
+    max-width: 100%; /* Ensures images don't overflow their containers */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below images */
 }
 
 /* Buttons */
@@ -139,6 +147,7 @@ header .container {
 .logo img {
     height: 40px;
     margin-right: 10px;
+    flex-shrink: 0; /* Ensures the logo image itself doesn't shrink more than intended */
 }
 
 .logo h1 {
@@ -146,6 +155,8 @@ header .container {
     margin: 0;
     color: var(--primary-color);
     white-space: nowrap; /* Keep this for larger screens; it will be overridden for smaller ones */
+    overflow: hidden; /* Helps prevent overflow if text is too long before wrapping */
+    text-overflow: ellipsis; /* Adds "..." if text is cut off */
 }
 
 .main-nav ul {
@@ -185,6 +196,7 @@ header .container {
     font-size: 1.8rem;
     cursor: pointer;
     color: var(--dark-color);
+    flex-shrink: 0; /* Prevents the toggle button from shrinking */
 }
 
 /* Mobile Sidebar */
@@ -315,7 +327,8 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto; /* Ensure image scales */
-    object-fit: cover;
+    object-fit: cover; /* Important for preventing distortion */
+    object-position: center; /* Important for centralizing focus */
 }
 
 .about-us-preview .about-content > div {
@@ -454,7 +467,8 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto;
-    object-fit: cover;
+    object-fit: cover; /* Important for preventing distortion */
+    object-position: center; /* Important for centralizing focus */
 }
 
 .about-section .story-content > div {
@@ -585,7 +599,8 @@ section:last-of-type {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     height: auto;
-    object-fit: cover;
+    object-fit: cover; /* Important for preventing distortion */
+    object-position: center; /* Important for centralizing focus */
 }
 
 .services-intro .intro-content > div {
@@ -692,7 +707,8 @@ section:last-of-type {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: cover; /* Crucial for circular images */
+    object-position: center; /* Ensures the focus of the image is centered */
     margin-bottom: 20px;
     border: 4px solid var(--primary-color);
     box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.2);
@@ -928,12 +944,16 @@ section:last-of-type {
 #location-map {
     padding: 0; /* Remove top/bottom padding as iframe handles height */
     overflow: hidden; /* Ensure no scrollbars from iframe */
-}
-#location-map iframe {
-    border-radius: 10px; /* Match other section designs */
-    box-shadow: var(--shadow-medium);
+    width: 100%; /* Ensure map container takes full width */
     margin-top: 40px; /* Space from contact form */
     margin-bottom: 40px;
+}
+#location-map iframe {
+    width: 100%; /* Ensure iframe takes full width of its container */
+    height: 400px; /* Set a default height for the map */
+    border-radius: 10px; /* Match other section designs */
+    box-shadow: var(--shadow-medium);
+    display: block; /* Remove extra space below iframe */
 }
 .sr-only { /* Screen reader only text */
     position: absolute;
@@ -1104,7 +1124,8 @@ footer .footer-content {
     .services-intro .intro-image,
     .about-section .profile-img {
         max-width: 80%; /* Adjust image size for smaller screens */
-        margin-bottom: 30px;
+        margin: 0 auto 30px auto; /* Center image when stacked */
+        height: auto; /* Ensure height adjusts */
     }
 
     .about-us-preview .about-content > div,
@@ -1166,6 +1187,7 @@ footer .footer-content {
         font-size: 1.3rem; /* Slightly smaller font size for tight spaces */
         white-space: normal; /* IMPORTANT: Allows the text to wrap onto multiple lines */
         line-height: 1.2;    /* Ensures good line spacing if text wraps */
+        text-overflow: clip; /* Remove ellipsis when text is allowed to wrap */
     }
 
     /* Optional: Shrink logo image slightly for very small screens */
@@ -1258,5 +1280,98 @@ footer .footer-content {
     .contact-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow items to go down to 200px wide */
         gap: 20px; /* Slightly reduced gap */
+    }
+}
+
+/* Even smaller breakpoint for very narrow screens like iPhone SE in portrait */
+@media (max-width: 420px) {
+    .container {
+        width: 98%; /* Maximize space for content */
+        padding: 10px 5px; /* Minimal padding */
+    }
+
+    .logo h1 {
+        font-size: 1.1rem; /* Even smaller font for logo */
+    }
+
+    .logo img {
+        height: 30px; /* Slightly smaller logo image */
+        margin-right: 5px;
+    }
+
+    .hero-title, .page-hero .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle, .page-hero .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .hero .btn {
+        width: 95%; /* Even wider buttons */
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 30px 0; /* Reduced section padding */
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    .services-preview .service-grid,
+    .about-section .principles-grid,
+    .about-section .choose-us-grid,
+    .services-list .service-category-grid,
+    .team-grid,
+    .contact-grid {
+        grid-template-columns: 1fr; /* Force single column layout for smallest screens */
+        gap: 15px;
+    }
+
+    .team-member-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .accordion-header {
+        padding: 15px 18px;
+    }
+    .accordion-header h3 {
+        font-size: 1rem;
+    }
+    .accordion-content p {
+        font-size: 0.95rem;
+        padding-bottom: 15px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .contact-form label {
+        font-size: 1rem;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form input[type="tel"],
+    .contact-form textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .contact-form button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    #location-map iframe {
+        height: 300px; /* Slightly reduced map height */
     }
 }
