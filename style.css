@@ -1181,6 +1181,21 @@ footer .footer-content {
     }
 }
 
+/* --- Specific adjustment for wider mobile screens (e.g., iPhone 12 Pro Max) --- */
+@media (min-width: 421px) and (max-width: 576px) {
+    .about-us-preview .about-img,
+    .services-intro .intro-image,
+    .about-section .profile-img {
+        max-width: 380px; /* Fixed max-width for better control on these devices */
+        margin: 0 auto 30px auto; /* Ensure it remains centered */
+    }
+
+    .team-member-card img {
+        width: 130px; /* Slightly larger for visual balance */
+        height: 130px;
+    }
+}
+
 @media (max-width: 576px) {
     /* Main logo heading adjustments for very small screens */
     .logo h1 {
