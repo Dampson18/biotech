@@ -324,10 +324,14 @@ section:last-of-type {
     flex: 1;
     min-width: 300px;
     max-width: 500px; /* Max size on larger screens */
-    border-radius: 10px;
+    border-radius: 10px; /* Added border-radius */
     box-shadow: var(--shadow-medium);
-    height: auto; /* Ensure image scales proportionally */
-    /* object-fit properties were removed here to prevent stretching/cropping */
+    height: auto;
+    transition: transform var(--transition-speed) ease; /* Added transition for hover */
+}
+
+.about-us-preview .about-img:hover {
+    transform: scale(1.02); /* Added subtle zoom animation on hover */
 }
 
 .about-us-preview .about-content > div {
@@ -463,10 +467,14 @@ section:last-of-type {
     flex: 1;
     min-width: 300px;
     max-width: 500px; /* Max size on larger screens */
-    border-radius: 10px;
+    border-radius: 10px; /* Added border-radius */
     box-shadow: var(--shadow-medium);
     height: auto;
-    /* object-fit properties were removed here to prevent stretching/cropping */
+    transition: transform var(--transition-speed) ease; /* Added transition for hover */
+}
+
+.about-section .profile-img:hover {
+    transform: scale(1.02); /* Added subtle zoom animation on hover */
 }
 
 .about-section .story-content > div {
@@ -594,10 +602,14 @@ section:last-of-type {
     flex: 1;
     min-width: 300px;
     max-width: 500px; /* Max size on larger screens */
-    border-radius: 10px;
+    border-radius: 10px; /* Added border-radius */
     box-shadow: var(--shadow-medium);
     height: auto;
-    /* object-fit properties were removed here to prevent stretching/cropping */
+    transition: transform var(--transition-speed) ease; /* Added transition for hover */
+}
+
+.services-intro .intro-image:hover {
+    transform: scale(1.02); /* Added subtle zoom animation on hover */
 }
 
 .services-intro .intro-content > div {
@@ -1099,7 +1111,7 @@ footer .footer-content {
 
     .menu-toggle {
         display: block; /* Show mobile menu icon */
-        flex-shrink: 0; 
+        flex-shrink: 0;
     }
 
     .hero-title, .page-hero .hero-title {
@@ -1120,10 +1132,11 @@ footer .footer-content {
     .about-us-preview .about-img,
     .services-intro .intro-image,
     .about-section .profile-img {
-        /* Adjusted for general mobile screens */
-        max-width: 350px; /* Reduced max-width to make them smaller overall */
+        /* Adjusted for general mobile screens - mimicking team member image approach */
+        max-width: 250px; /* Reduced max-width significantly */
         margin: 0 auto 30px auto; /* Center image when stacked */
         height: auto; /* Ensure height adjusts proportionally */
+        object-fit: cover; /* Added object-fit: cover for better cropping if aspect ratios vary widely */
     }
 
     .about-us-preview .about-content > div,
@@ -1184,7 +1197,7 @@ footer .footer-content {
     .about-us-preview .about-img,
     .services-intro .intro-image,
     .about-section .profile-img {
-        max-width: 280px; /* Further reduced max-width for tighter control */
+        max-width: 200px; /* Further reduced max-width for tighter control */
         margin: 0 auto 30px auto; /* Ensure it remains centered */
     }
 
@@ -1346,8 +1359,9 @@ footer .footer-content {
     .about-us-preview .about-img,
     .services-intro .intro-image,
     .about-section .profile-img {
-        max-width: 220px; /* Tightly constrained for iPhone 5 (320px viewport) */
+        max-width: 150px; /* Tightly constrained for iPhone SE (320px viewport) */
         margin: 0 auto 30px auto; /* Ensure it remains centered */
+        /* object-fit: cover is inherited from 992px breakpoint, ensuring good cropping */
     }
 
     .team-member-card img {
