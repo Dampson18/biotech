@@ -328,6 +328,9 @@ section:last-of-type {
     box-shadow: var(--shadow-medium);
     height: auto;
     transition: transform var(--transition-speed) ease; /* Added transition for hover */
+    /* *** ADDED/UPDATED FOR IPAD/IPHONE DISPLAY *** */
+    object-fit: cover;
+    object-position: center;
 }
 
 .about-us-preview .about-img:hover {
@@ -471,6 +474,9 @@ section:last-of-type {
     box-shadow: var(--shadow-medium);
     height: auto;
     transition: transform var(--transition-speed) ease; /* Added transition for hover */
+    /* *** ADDED/UPDATED FOR IPAD/IPHONE DISPLAY *** */
+    object-fit: cover;
+    object-position: center;
 }
 
 .about-section .profile-img:hover {
@@ -606,6 +612,9 @@ section:last-of-type {
     box-shadow: var(--shadow-medium);
     height: auto;
     transition: transform var(--transition-speed) ease; /* Added transition for hover */
+    /* *** ADDED/UPDATED FOR IPAD/IPHONE DISPLAY *** */
+    object-fit: cover;
+    object-position: center;
 }
 
 .services-intro .intro-image:hover {
@@ -1133,10 +1142,11 @@ footer .footer-content {
     .services-intro .intro-image,
     .about-section .profile-img {
         /* Adjusted for general mobile screens - mimicking team member image approach */
-        max-width: 250px; /* Reduced max-width significantly */
+        max-width: 280px; /* Increased slightly for better visual on larger phones/small tablets */
         margin: 0 auto 30px auto; /* Center image when stacked */
         height: auto; /* Ensure height adjusts proportionally */
-        object-fit: cover; /* Added object-fit: cover for better cropping if aspect ratios vary widely */
+        object-fit: cover; /* Ensure it fills and crops if needed */
+        object-position: center;
     }
 
     .about-us-preview .about-content > div,
@@ -1197,7 +1207,7 @@ footer .footer-content {
     .about-us-preview .about-img,
     .services-intro .intro-image,
     .about-section .profile-img {
-        max-width: 200px; /* Further reduced max-width for tighter control */
+        max-width: 220px; /* Reduced max-width for tighter control on wider phones */
         margin: 0 auto 30px auto; /* Ensure it remains centered */
     }
 
@@ -1359,9 +1369,9 @@ footer .footer-content {
     .about-us-preview .about-img,
     .services-intro .intro-image,
     .about-section .profile-img {
-        max-width: 150px; /* Tightly constrained for iPhone SE (320px viewport) */
-        margin: 0 auto 30px auto; /* Ensure it remains centered */
-        /* object-fit: cover is inherited from 992px breakpoint, ensuring good cropping */
+        max-width: 160px; /* Adjusted to be slightly larger than team member images (150px) for visual hierarchy */
+        margin: 0 auto 15px auto;
+        /* object-fit: cover is inherited, ensuring good cropping */
     }
 
     .team-member-card img {
