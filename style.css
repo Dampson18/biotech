@@ -304,6 +304,13 @@ header .container {
     min-width: 150px;
 }
 
+/* --- NEW/MODIFIED: Contact Page Hero Specific Height --- */
+.contact-page-banner {
+    height: 40vh; /* Makes the contact page hero shorter */
+    min-height: 280px; /* Ensures a minimum height even on very small screens */
+}
+
+
 /* --- Sections Styling --- */
 section {
     padding: 80px 0;
@@ -424,7 +431,7 @@ section:last-of-type {
     background-position: center;
     color: var(--white-color);
     text-align: center;
-    padding: 100px 20px;
+    padding: 70px 20px; /* MODIFIED: Reduced padding from 100px to 70px */
     position: relative;
 }
 
@@ -1203,6 +1210,12 @@ footer .footer-content {
     .accordion-header h3 {
         font-size: 1.1rem;
     }
+
+    /* MODIFIED: Responsive adjustments for the contact-page-banner on smaller screens */
+    .contact-page-banner {
+        height: 35vh; /* Even shorter on tablets */
+        min-height: 220px;
+    }
 }
 
 /* --- Specific adjustment for wider mobile screens (e.g., iPhone 12 Pro Max) --- */
@@ -1308,6 +1321,12 @@ footer .footer-content {
 
     .contact-form button[type="submit"] {
         width: 100%;
+    }
+
+    /* MODIFIED: Responsive adjustments for the contact-page-banner on smaller screens */
+    .contact-page-banner {
+        height: 30vh; /* Shorter still on mobile phones */
+        min-height: 180px;
     }
 }
 
@@ -1416,6 +1435,12 @@ footer .footer-content {
 
     #location-map iframe {
         height: 300px; /* Slightly reduced map height */
+    }
+
+    /* MODIFIED: Responsive adjustments for the contact-page-banner on very small screens */
+    .contact-page-banner {
+        height: 25vh; /* Further reduction for very small screens */
+        min-height: 150px;
     }
 
     /* Adjust footer social links alignment if needed, though they should center with flex */
